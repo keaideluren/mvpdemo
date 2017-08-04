@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal">
+
+    <!--轮播图-->
+    <com.example.mythreeview.autoscrollviewpager.SlideAutoLoopView
+        android:id="@+id/salv_banner_scene"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_heightPercent="51%w"
+        app:layout_widthPercent="100%w"/>
+
+    <!--轮播图的指示器-->
+    <com.example.mythreeview.autoscrollviewpager.FlowIndicator
+        android:id="@+id/ll_channel_dots"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/salv_banner_scene"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        app:focus_color="@color/leplus_yellow"
+        app:normal_color="@color/background_gray5"
+        app:r="3dp"
+        app:space="5dp"/>
+
+    <!--一级菜单-->
+    <LinearLayout
+        android:id="@+id/ll_tab_scene"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/salv_banner_scene"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/ll_tab_lucky_scene"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="40dp"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:background="@drawable/icon_tab_lucky"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:text="快乐寻宝"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="@dimen/body"-->
+                <!--/>-->
+        <!--</LinearLayout>-->
+
+        <LinearLayout
+            android:id="@+id/ll_tab_sunle_scene"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_tab_sunle"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="晒乐有礼"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tab_activity_scene"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_tab_activity"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="活动"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tab_tribal_scene"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_tab_tribal"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="部落"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tab_friend_scene"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_tab_friend"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="邂逅"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tab_game_scene"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/icon_tab_game"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="游戏厅"
+                android:textColor="@color/black"
+                android:textSize="@dimen/body"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--分类菜单，当前页-->
+    <!--<TextView-->
+        <!--android:id="@+id/tv_title_type_scene"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@id/ll_tab_scene"-->
+        <!--android:gravity="center_vertical"-->
+        <!--android:padding="10dp"-->
+        <!--android:text="热门分类"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="@dimen/title"/>-->
+
+    <com.zhy.android.percent.support.PercentLinearLayout
+        android:id="@+id/ll_type_scene"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_tab_scene"
+        android:gravity="center_vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <ImageView
+            android:id="@+id/tv_type_drink_scene"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bg_tab_drink"
+            android:contentDescription="酒吧"
+            app:layout_heightPercent="17%w"
+            app:layout_widthPercent="27%w"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/tv_type_manyao_scene"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bg_tab_manyao"
+            app:layout_heightPercent="17%w"
+            app:layout_widthPercent="27%w"
+            android:contentDescription="慢摇吧"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <ImageView
+            android:id="@+id/tv_type_ktv_scene"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/bg_tab_ktv"
+            android:contentDescription="KTV"
+            app:layout_heightPercent="17%w"
+            app:layout_widthPercent="27%w"/>
+    </com.zhy.android.percent.support.PercentLinearLayout>
+
+    <!--推荐商家的标题-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ll_type_scene"
+        android:padding="10dp"
+        android:text="推荐商家"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title"/>
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

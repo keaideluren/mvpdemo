@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_gray6"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <com.example.mythreeview.loading.AVLoadingIndicatorView
+        android:id="@+id/loading_progress_empty"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:indicator_color="#ff4401"
+        app:indicator="BallSpinFadeLoader"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/tv_error_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="@string/empty_text"
+        android:textSize="16sp"
+        android:textColor="#cccccc"/>
+
+    <TextView
+        android:id="@+id/tv_no_data_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:textColor="#ff4401"
+        android:textSize="16sp"/>
+
+    <com.example.mythreeview.TitleBarLayout
+        android:id="@+id/tbl_title_empty_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</FrameLayout>

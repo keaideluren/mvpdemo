@@ -1,0 +1,22 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorAccent">@color/leplus_yellow</item>
+        <item name="android:colorPrimaryDark">@color/colorTextG3</item>
+        <item name="android:windowBackground">@color/background_gray1</item>
+        <item name="android:textColorPrimary">@color/colorTextG3</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+    <style name="ApppCompatFullScreen" parent="@style/AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="SplashTheme" parent="@style/ApppCompatFullScreen">
+        <item name="android:windowBackground">@drawable/start_image</item>
+    </style>
+</resources>

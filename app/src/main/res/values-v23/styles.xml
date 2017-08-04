@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorAccent">@color/leplus_yellow</item>
+        <item name="android:textColorPrimary">@color/colorTextG3</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimaryDark">@color/colorTextG3</item>
+        <item name="android:windowBackground">@color/background_gray1</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+    </style>
+    <style name="ApppCompatFullScreen" parent="@style/AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>

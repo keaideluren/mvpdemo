@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">mvp</string>
+    <string name="title_activity_guid">GuidActivity</string>
+    <!--全局性的一些字符串-->
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="action_bar_back">返回</string>
+    <string name="agree">同意</string>
+    <string name="agreed">已同意</string>
+    <string name="refuse">拒绝</string>
+    <string name="refused">已拒绝</string>
+    <string name="done">完成</string>
+    <string name="login_succ">登录成功</string>
+    <string name="kick_logout">你的账号已在其他终端登录,重新登录</string>
+    <string name="net_work_error">网络似乎开小差了</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_permission_tip">主人，没有这些权限真的啥都做不了啊！就点一下确定吧~</string>
+    <string name="login_error">登录失败</string>
+
+
+</resources>

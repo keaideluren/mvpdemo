@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_amuse_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.example.mythreeview.TitleBarLayout
+        android:id="@+id/tbl_titlebar_amusedetail"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:right_icon="@drawable/icon_more_point"
+        app:title_text="评论详情"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_input_amusedetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:id="@+id/tv_ok_amusedetail"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/body"/>
+        <!--android:background="@drawable/shape_edit_stroke_yellow"-->
+
+
+        <EditText
+            android:id="@+id/et_text_amusedetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@id/tv_ok_amusedetail"
+            android:layout_toStartOf="@id/tv_ok_amusedetail"
+            android:gravity="start"
+            android:hint="请输入内容"
+            android:maxHeight="120dp"
+            android:maxLength="100"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorTextG2"
+            android:textSize="@dimen/body"/>
+
+        <!--android:textCursorDrawable="@drawable/cursor_confirmfriend"-->
+        <!--android:background="@drawable/shape_rectangle_gray_stroke"-->
+
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_amuse_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/rl_input_amusedetail"
+        android:layout_below="@id/tbl_titlebar_amusedetail"
+        android:overScrollMode="never"/>
+
+</RelativeLayout>

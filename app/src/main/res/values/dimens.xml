@@ -1,0 +1,42 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="super_title">20sp</dimen>
+    <dimen name="bigtitle">18sp</dimen>
+    <dimen name="title">16sp</dimen>
+    <dimen name="body">14sp</dimen>
+    <dimen name="subbody">12sp</dimen>
+    <dimen name="login_content">380dp</dimen>
+
+    <dimen name="snappingstepper_width_button">30dp</dimen>
+    <dimen name="snappingstepper_padding_button">2dp</dimen>
+    <dimen name="snappingstepper_textSize">15sp</dimen>
+    <dimen name="global_dialog_padding">15.0dip</dimen>
+    <!--                字体大小型号                                        -->
+    <!-- 超小标题字号 -->
+    <dimen name="font_ten">10sp</dimen>
+    <!-- 很小标题字号 -->
+    <dimen name="font_twelve">12sp</dimen>
+    <!-- 小标题字号 -->
+    <dimen name="font_fourteen">14sp</dimen>
+    <!-- 中标题字号 -->
+    <dimen name="font_Sixteen">16sp</dimen>
+    <!-- 大标题字号 -->
+    <dimen name="font_Eighteen">18sp</dimen>
+    <!-- 超大标题字号 -->
+    <dimen name="font_Twenty">20sp</dimen>
+    <!-- 特大标题字号 -->
+    <dimen name="font_22">22sp</dimen>
+    <dimen name="font_TwentyFour">24sp</dimen>
+    <dimen name="shadow_width">5dp</dimen>
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="space_8">8.0dip</dimen>
+
+    <dimen name="three_grid_unit">24dp</dimen>
+    <dimen name="one_and_a_half_grid_unit">12dp</dimen>
+    <dimen name="divider">1px</dimen>
+
+</resources>

@@ -1,0 +1,136 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    flavorDimensions "channel"
+    productFlavors {
+        _360 {
+            dimension "channel"
+        }
+        xunlebao {
+            dimension "channel"
+        }
+        productFlavors.all { flavor ->
+            flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file("../FengXinlinKey.jks")
+            storePassword "1231578"
+            keyAlias "myleplus"
+            keyPassword "1231578"
+        }
+        debug {
+            storeFile file("../FengXinlinKey.jks")
+            storePassword "1231578"
+            keyAlias "myleplus"
+            keyPassword "1231578"
+        }
+    }
+
+    lintOptions {
+        // disable 'MissingTranslation'
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    buildTypes {
+        release {
+            // 如果没有提供混淆规则文件，则设置默认的混淆规则文件（SDK/tools/proguard/proguard-android.txt）
+            pseudoLocalesEnabled true
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
+            minifyEnabled true
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //加载默认混淆配置文件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // 如果没有提供混淆规则文件，则设置默认的混淆规则文件（SDK/tools/proguard/proguard-android.txt）
+            pseudoLocalesEnabled true
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //混淆
+            minifyEnabled false
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources false
+            //加载默认混淆配置文件
+//            proguardFiles getDefaultProguardFile('proguard-Android.txt'), 'proguard-rules.pro'
+            //签名
+            signingConfig signingConfigs.release
+        }
+    }
+
+    defaultConfig {
+        ndk {
+            abiFilters "armeabi" , "x86"
+
+        }
+        applicationId "com.luren.mvpdemo"
+        minSdkVersion 16
+        targetSdkVersion 25
+        resConfigs "zh"
+        versionCode 2
+        versionName "1.0.1"
+        renderscriptTargetApi 26
+        renderscriptSupportModeEnabled true
+        multiDexEnabled true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+//    tasks.whenTaskAdded { task ->
+//        if (task.name.contains("lint")
+////                || task.name.equals("clean")//如果instant run不生效，把clean这行干掉
+//                ||task.name.contains("Aidl")//项目中有用到aidl则不可以舍弃这个任务
+//                || task.name.contains("mockableAndroidJar")//用不到测试的时候就可以先关闭
+//                || task.name.contains("UnitTest")
+//                || task.name.contains("AndroidTest")
+////                || task.name.contains("Ndk")//用不到NDK和JNI的也关闭掉
+////                || task.name.contains("Jni")
+//        ) {
+//            task.enabled = false
+//        }
+//    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(':imsdk')
+    implementation project(':mythreeview')
+    implementation project(':myutils')
+    implementation project(':mylibrary')
+    implementation project(':recycleritemdecoration')
+    implementation project(':jcvideoplayer')
+    implementation project(':galleryfinal')
+    implementation project(':zbar')
+    implementation 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    implementation 'com.google.dagger:dagger:2.10'
+    //注解框架
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.10'
+    //注解框架
+    provided 'org.glassfish:javax.annotation:10.0-b28'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}
