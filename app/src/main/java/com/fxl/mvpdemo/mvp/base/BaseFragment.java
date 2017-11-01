@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.mythreeview.EmptyView;
 import com.example.mythreeview.loading.AVLoadingIndicatorDialog;
 import com.fxl.mvpdemo.LeplusApplication;
+import com.fxl.mvpdemo.mvp.FragmentScope;
 import com.fxl.mvpdemo.mvp.MVP;
 import com.fxl.mvpdemo.mvp.component.DaggerFragmentComponent;
 import com.fxl.mvpdemo.mvp.component.FragmentComponent;
@@ -33,6 +34,9 @@ public abstract class BaseFragment<T extends BaseFragmentPresenter> extends Frag
 
     @Inject
     protected T mPresenter;
+    @FragmentScope
+    @Inject
+    protected  Activity mActivity1;
     protected View mView;
     protected Activity mActivity;
     protected Context mContext;
