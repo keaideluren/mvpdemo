@@ -1,5 +1,6 @@
 package com.fxl.mvpdemo.pages.guid;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
@@ -201,6 +202,7 @@ public class GuidPresenter extends RxPresenter<GuidContact.GudiView> implements 
     /**
      * 初始化接口签名信息
      */
+    @SuppressLint("MissingPermission")
     private void initSign() {
         AppUtils.deviceName = Build.MANUFACTURER + Build.MODEL;
         try {

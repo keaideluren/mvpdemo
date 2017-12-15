@@ -1,1 +1,0 @@
-com.luren.zbar.test

@@ -122,8 +122,8 @@ dependencies {
     implementation project(':jcvideoplayer')
     implementation project(':galleryfinal')
     implementation project(':zbar')
-    implementation 'com.jakewharton:butterknife:8.6.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.google.dagger:dagger:2.10'
     //注解框架
     annotationProcessor 'com.google.dagger:dagger-compiler:2.10'

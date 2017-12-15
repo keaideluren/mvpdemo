@@ -10,9 +10,9 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 
+import com.fxl.mvpdemo.R;
 import com.tbruyelle.rxpermissions2.Permission;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-import com.fxl.mvpdemo.R;
 
 import io.reactivex.functions.Consumer;
 
@@ -22,7 +22,6 @@ import io.reactivex.functions.Consumer;
  */
 
 public class RxPermissionUtil {
-    private int totalGranted = 0;
     private CharSequence secondTip;
     private CharSequence foreverTip;
     private String[] permissions;
@@ -45,7 +44,6 @@ public class RxPermissionUtil {
                 }
             }
         }
-        instance.totalGranted = 0;
         instance.context = context;
         instance.permissions = null;
         instance.secondTip = null;
@@ -95,8 +93,17 @@ public class RxPermissionUtil {
                     @Override
                     public void accept(final Permission permission) throws Exception {
                         if (permission.granted) {
-                            totalGranted++;
-                            if (totalGranted == permissions.length) {
+                            String[] permissionNew = new String[permissions.length - 1];
+                            int dd1 = 0;
+                            for (int i = 0; i < permissions.length; i++) {
+                                if (!permissions[i].equals(permission.name)) {
+                                    permissionNew[i - dd1] = permissions[i];
+                                } else {
+                                    dd1++;
+                                }
+                            }
+                            permissions = permissionNew;
+                            if (permissions.length == 0) {
                                 permissionGranted.permissionGranted();
                             }
                         } else if (permission.shouldShowRequestPermissionRationale) {
@@ -120,51 +127,43 @@ public class RxPermissionUtil {
 
     private AlertDialog getSecondTipDialog(final FragmentActivity context
             , final OnPermissionCallback permissionGranted, final Permission permission) {
-        if (tipDialog == null) {
-            tipDialog = new AlertDialog.Builder(context)
-                    .setTitle("请求权限")
-                    .setMessage(TextUtils.isEmpty(secondTip) ? context.getString(R.string.no_permission_tip) : secondTip)
-                    .setCancelable(false)
-                    .setPositiveButton("确定", (dialog, which) -> {
-                        dialog.dismiss();
-                        if (which == DialogInterface.BUTTON_POSITIVE) {
-                            requestPermission(permissionGranted);
-                        }
-                    })
-                    .setNegativeButton("拒绝", (dialog, which) -> {
-                        dialog.dismiss();
-                        if (isShowForeverTip) {
-                            getForeverTipDialog(context, permissionGranted);
-                        } else {
-                            permissionGranted.permissionDenied();
-                        }
-                    })
-                    .create();
-            tipDialog.setCanceledOnTouchOutside(false);
-        }
+        tipDialog = new AlertDialog.Builder(context)
+                .setTitle("请求权限")
+                .setMessage(TextUtils.isEmpty(secondTip) ? context.getString(R.string.no_permission_tip) : secondTip)
+                .setCancelable(false)
+                .setPositiveButton("确定", (dialog, which) -> {
+                    dialog.dismiss();
+                    if (which == DialogInterface.BUTTON_POSITIVE) {
+                        requestPermission(permissionGranted);
+                    }
+                })
+                .setNegativeButton("拒绝", (dialog, which) -> {
+                    dialog.dismiss();
+                    permissionGranted.permissionDenied();
+                })
+                .create();
+        tipDialog.setCanceledOnTouchOutside(false);
         return tipDialog;
     }
 
     private AlertDialog getForeverTipDialog(final FragmentActivity context, final OnPermissionCallback permissionGranted) {
-        if (tipDialog == null) {
-            tipDialog = new AlertDialog.Builder(context)
-                    .setTitle("请求权限")
-                    .setMessage(TextUtils.isEmpty(foreverTip) ? context.getString(R.string.no_permission_tip) : foreverTip)
-                    .setCancelable(false)
-                    .setPositiveButton("确定", (dialog, which) -> {
-                        dialog.dismiss();
+        tipDialog = new AlertDialog.Builder(context)
+                .setTitle("请求权限")
+                .setMessage(TextUtils.isEmpty(foreverTip) ? context.getString(R.string.no_permission_tip) : foreverTip)
+                .setCancelable(false)
+                .setPositiveButton("确定", (dialog, which) -> {
+                    dialog.dismiss();
 
-                        Uri packageURI = Uri.parse("package:" + context.getPackageName());
-                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
-                        context.startActivity(intent);
-                    })
-                    .setNegativeButton("拒绝", (dialog, which) -> {
-                        dialog.dismiss();
-                        permissionGranted.permissionDenied();
-                    })
-                    .create();
-            tipDialog.setCanceledOnTouchOutside(false);
-        }
+                    Uri packageURI = Uri.parse("package:" + context.getPackageName());
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                    context.startActivity(intent);
+                })
+                .setNegativeButton("拒绝", (dialog, which) -> {
+                    dialog.dismiss();
+                    permissionGranted.permissionDenied();
+                })
+                .create();
+        tipDialog.setCanceledOnTouchOutside(false);
         return tipDialog;
     }
 
