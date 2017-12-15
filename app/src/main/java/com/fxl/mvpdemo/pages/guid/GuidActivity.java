@@ -89,9 +89,9 @@ public class GuidActivity extends BaseActivity<GuidPresenter> implements GuidCon
 //                , Manifest.permission.WRITE_EXTERNAL_STORAGE
 //                , Manifest.permission.READ_EXTERNAL_STORAGE);
 //        new RxPermissions(mContext).request()
-        RxPermissionUtil.with(this)
-            .setSecondTip("二次")
-            .setForeverTip("已经禁止了，去设置")
+        new RxPermissionUtil(this)
+            .setSecondTip("需要这些权限，请在接下来的权限弹窗中选择允许")
+            .setForeverTip("需要存储权限和手机状态权限，请去设置中允许")
             .setShowSecondTip(true)
             .setShowForeverTip(true)
             .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE)

@@ -29,26 +29,12 @@ public class RxPermissionUtil {
     private boolean isShowSecondTip = true;
     private boolean isShowForeverTip = true;
 
-    private static RxPermissionUtil instance;
     private static final byte[] lock = new byte[0];
+    private AlertDialog.Builder tipDialogBuilder;
     private AlertDialog tipDialog;
 
-    private RxPermissionUtil() {
-    }
-
-    public static RxPermissionUtil with(@NonNull FragmentActivity context) {
-        if (instance == null) {
-            synchronized (lock) {
-                if (instance == null) {
-                    instance = new RxPermissionUtil();
-                }
-            }
-        }
-        instance.context = context;
-        instance.permissions = null;
-        instance.secondTip = null;
-        instance.foreverTip = null;
-        return instance;
+    public RxPermissionUtil(@NonNull FragmentActivity context) {
+        this.context = context;
     }
 
     public RxPermissionUtil setSecondTip(CharSequence secondTip) {
@@ -109,14 +95,14 @@ public class RxPermissionUtil {
                         } else if (permission.shouldShowRequestPermissionRationale) {
                             //第二次出现
                             if (isShowSecondTip) {
-                                getSecondTipDialog(context, permissionGranted, permission).show();
+                                showSecondTipDialog(context, permissionGranted, permission);
                             } else {
                                 permissionGranted.permissionDenied();
                             }
                         } else {
                             //没有给权限，直接禁了，这里应该跳到设置界面
                             if (isShowForeverTip) {
-                                getForeverTipDialog(context, permissionGranted).show();
+                                showForeverTipDialog(context, permissionGranted);
                             } else {
                                 permissionGranted.permissionDenied();
                             }
@@ -125,46 +111,57 @@ public class RxPermissionUtil {
                 });
     }
 
-    private AlertDialog getSecondTipDialog(final FragmentActivity context
+    private void showSecondTipDialog(final FragmentActivity context
             , final OnPermissionCallback permissionGranted, final Permission permission) {
-        tipDialog = new AlertDialog.Builder(context)
-                .setTitle("请求权限")
-                .setMessage(TextUtils.isEmpty(secondTip) ? context.getString(R.string.no_permission_tip) : secondTip)
-                .setCancelable(false)
-                .setPositiveButton("确定", (dialog, which) -> {
-                    dialog.dismiss();
-                    if (which == DialogInterface.BUTTON_POSITIVE) {
-                        requestPermission(permissionGranted);
-                    }
-                })
-                .setNegativeButton("拒绝", (dialog, which) -> {
-                    dialog.dismiss();
-                    permissionGranted.permissionDenied();
-                })
-                .create();
-        tipDialog.setCanceledOnTouchOutside(false);
-        return tipDialog;
+        if (tipDialogBuilder == null) {
+            tipDialogBuilder = new AlertDialog.Builder(context)
+                    .setTitle("请求权限")
+                    .setCancelable(false)
+
+                    .setNegativeButton("拒绝", (dialog, which) -> {
+                        dialog.dismiss();
+                        permissionGranted.permissionDenied();
+                    });
+        }
+        if (tipDialog == null || !tipDialog.isShowing()) {
+            tipDialog = tipDialogBuilder
+                    .setMessage(TextUtils.isEmpty(secondTip) ? context.getString(R.string.no_permission_tip) : secondTip)
+                    .setPositiveButton("确定", (dialog, which) -> {
+                        dialog.dismiss();
+                        if (which == DialogInterface.BUTTON_POSITIVE) {
+                            requestPermission(permissionGranted);
+                        }
+                    })
+                    .create();
+            tipDialog.setCanceledOnTouchOutside(false);
+            tipDialog.show();
+        }
     }
 
-    private AlertDialog getForeverTipDialog(final FragmentActivity context, final OnPermissionCallback permissionGranted) {
-        tipDialog = new AlertDialog.Builder(context)
-                .setTitle("请求权限")
-                .setMessage(TextUtils.isEmpty(foreverTip) ? context.getString(R.string.no_permission_tip) : foreverTip)
-                .setCancelable(false)
-                .setPositiveButton("确定", (dialog, which) -> {
-                    dialog.dismiss();
+    private void showForeverTipDialog(final FragmentActivity context, final OnPermissionCallback permissionGranted) {
+        if (tipDialogBuilder == null) {
+            tipDialogBuilder = new AlertDialog.Builder(context)
+                    .setTitle("请求权限")
+                    .setCancelable(false)
+                    .setNegativeButton("拒绝", (dialog, which) -> {
+                        dialog.dismiss();
+                        permissionGranted.permissionDenied();
+                    });
+        }
+        if (tipDialog == null || !tipDialog.isShowing()) {
+            tipDialog = tipDialogBuilder
+                    .setMessage(TextUtils.isEmpty(foreverTip) ? context.getString(R.string.no_permission_tip) : foreverTip)
+                    .setPositiveButton("确定", (dialog, which) -> {
+                        dialog.dismiss();
 
-                    Uri packageURI = Uri.parse("package:" + context.getPackageName());
-                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
-                    context.startActivity(intent);
-                })
-                .setNegativeButton("拒绝", (dialog, which) -> {
-                    dialog.dismiss();
-                    permissionGranted.permissionDenied();
-                })
-                .create();
-        tipDialog.setCanceledOnTouchOutside(false);
-        return tipDialog;
+                        Uri packageURI = Uri.parse("package:" + context.getPackageName());
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
+                        context.startActivity(intent);
+                    })
+                    .create();
+            tipDialog.setCanceledOnTouchOutside(false);
+            tipDialog.show();
+        }
     }
 
 

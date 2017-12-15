@@ -85,10 +85,10 @@ public class QrcodeScannerActivity extends SimpleActivity {
      * Do not have permission to request for permission and start scanning.
      */
     private void startScanUnKnowPermission() {
-        RxPermissionUtil.with(this)
+        new RxPermissionUtil(this)
             .permissions(Manifest.permission.CAMERA)
             .setForeverTip("扫描二维码需要相机权限")
-            .setSecondTip("扫描二维码需要相机权限")
+            .setSecondTip("扫描二维码一定需要相机权限")
             .setShowForeverTip(false)
             .setShowSecondTip(true)
             .requestPermission(new RxPermissionUtil.OnPermissionCallback() {
